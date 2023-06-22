@@ -23,6 +23,18 @@ public class Cube{
         return this.posY;
     }
 
+    public Boolean isFree(ArrayList<Cube> list){
+        Iterator<Cube> it = list.iterator();
+        while(it.hasNext()){
+            Cube cube = it.next();
+
+            if(this.getPosX() == cube.getPosX() && this.getPosY() <= cube.getPosY()){
+                return false;
+            }
+        }
+        return true;
+    }
+
     public Boolean isInAir(ArrayList<Cube> list){
         if(this.getPosY() == 1){
             return false;
