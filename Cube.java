@@ -52,4 +52,31 @@ public class Cube{
         }
         return true;
     }
+
+    public Boolean isValid(ArrayList<Cube> list){
+        int K = list.size()/3;
+
+        // out of bounds check
+        if(this.getPosX() < 1 || this.getPosY() < 1 || this.getPosY() > 3){
+            return false;
+        }
+        if(this.getPosY() == 1 && this.getPosX() > 4*K){
+            return false;
+        }
+
+        // Check if on Y > 1, X is greater than K
+        if(this.getPosY() > 1 && this.getPosX() > K){
+            return false;
+        }
+        for(Cube cube : list){
+            // Check if this cube coincides with an other cube
+            if(this.getPosX() == cube.getPosX() && this.getPosY() == cube.getPosY() && this.getID() != cube.getID()){
+                return false;
+            }
+        }
+        if(isInAir(list)){
+            return false;
+        }
+        return true;
+    }
 }
