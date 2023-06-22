@@ -10,6 +10,7 @@ public class MainGame {
         System.out.print("ENTER K: ");
         K = input.nextInt();
 
+        //TODO: Randomize the list
         // Initialize a list with K cubes on the table (ordered)
         for(int i = 1; i <= 3 * K; i++){
             Cube cube = new Cube(i, i, 1);
