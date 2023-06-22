@@ -27,7 +27,9 @@ public class Cube{
         Iterator<Cube> it = list.iterator();
         while(it.hasNext()){
             Cube cube = it.next();
-
+            if(this.getID() == cube.getID()){
+                continue;
+            }
             if(this.getPosX() == cube.getPosX() && this.getPosY() <= cube.getPosY()){
                 return false;
             }
