@@ -24,6 +24,21 @@ public class Table {
         return null;
     }
 
+    public Boolean isGoalState(){
+        int K = list.size()/3;
+        int i = 0;
+        for(Cube cube : list){
+            if(cube.getPosX() == ((cube.getID() - 1) % K + 1) && cube.getPosY() == ((cube.getID() - 1) / K + 1)){
+                i++;
+            }
+            if(i == 3 * K){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public void printTable(){
         int  i = 0;
         int J = 0;
