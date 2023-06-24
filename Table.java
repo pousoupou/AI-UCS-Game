@@ -2,13 +2,23 @@ import java.util.*;
 
 public class Table {
     private ArrayList<Cube> list;
+    private int K;
 
-    public Table(){
+    public Table(int K){
+        this.K = K;
         list = new ArrayList<Cube>();
+    }
+
+    public int getK(){
+        return this.K;
     }
 
     public ArrayList<Cube> getCubes(){
         return this.list;
+    }
+
+    public void setCubes(ArrayList<Cube> list){
+        this.list = list;
     }
 
     public void addCube(Cube cube){
@@ -24,6 +34,41 @@ public class Table {
         return null;
     }
 
+    public ArrayList<Table> generateMoves(){
+        ArrayList<Table> moves = new ArrayList<Table>();
+        ArrayList<Cube> currentBoard = this.getCubes();
+
+        int X = 1;
+        int Y = 1;
+        int K = this.getK();
+        int index = 0;
+
+        for(Cube cube : currentBoard){
+            int backupX = cube.getPosX();
+            int backupY = cube.getPosY();
+
+            for(Y = 1; Y <= 3; Y++){
+                for(X = 1; X <= 4*K; X++){
+                    if(Y > 1 && X > K){
+                        continue;
+                    }
+                    if(cube.isFree(currentBoard)){
+                        cube.setPosX(X);
+                        cube.setPosY(Y);
+    
+                        moves.get(index).addCube(cube);
+                        index++;
+                    }else if(!cube.isValid(currentBoard)){
+                        cube.setPosX(backupX);
+                        cube.setPosY(backupY);
+                        continue;
+                    }
+                }
+            }
+        }
+        return moves;
+    }
+
     public Boolean isGoalState(){
         int K = list.size()/3;
         int i = 0;
@@ -35,7 +80,6 @@ public class Table {
                 return true;
             }
         }
-
         return false;
     }
 
