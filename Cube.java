@@ -23,6 +23,14 @@ public class Cube{
         return this.posY;
     }
 
+    public void setPosX(int posX){
+        this.posX = posX;
+    }
+
+    public void setPosY(int posY){
+        this.posY = posY;
+    }
+
     public Boolean isFree(ArrayList<Cube> list){
         Iterator<Cube> it = list.iterator();
         while(it.hasNext()){
