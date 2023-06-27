@@ -32,9 +32,7 @@ public class Cube{
     }
 
     public Boolean isFree(ArrayList<Cube> list){
-        Iterator<Cube> it = list.iterator();
-        while(it.hasNext()){
-            Cube cube = it.next();
+        for(Cube cube : list){
             if(this.getID() == cube.getID()){
                 continue;
             }
