@@ -38,7 +38,6 @@ public class Table {
 
     public ArrayList<Table> generateMoves(){
         ArrayList<Cube> currentTable = this.getCubes();
-        ArrayList<Cube> copyOfTable = new ArrayList<Cube>(currentTable);
 
         int X = 1;
         int Y = 1;
@@ -52,9 +51,11 @@ public class Table {
                 for(X = 1; X <= 4*K; X++){
                     cube.setPosX(X);
                     cube.setPosY(Y);
+
+                    ArrayList<Cube> copyOfTable = createCopyOfTable(currentTable);
                     if(cube.isValid(copyOfTable) && cube.isFree(copyOfTable)){
                         Table table = new Table(K);
-                        table.setCubes(currentTable);
+                        table.setCubes(copyOfTable);
                         
                         this.moves.add(table);
                     }else{
@@ -82,6 +83,17 @@ public class Table {
             }
         }
         return false;
+    }
+
+    private ArrayList<Cube> createCopyOfTable(ArrayList<Cube> toCopy){
+        ArrayList<Cube> copy = new ArrayList<>();
+
+        for(Cube cube : toCopy){
+            Cube _cube = new Cube(cube.getID(), cube.getPosX(), cube.getPosY());
+            copy.add(_cube);
+        }
+
+        return copy;
     }
 
     public void printTable(){
