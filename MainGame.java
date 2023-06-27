@@ -22,11 +22,9 @@ public class MainGame {
 
         System.out.println();
 
-        // moves = table.generateMoves();
-
-        TableUtil.generateMoves(table);
         ArrayList<Table> moves = new ArrayList<Table>();
-        moves = TableUtil.getMoves();
+
+        moves = table.generateMoves();
 
         for(Table move : moves){
             move.printTable();
