@@ -101,28 +101,27 @@ public class Table {
         int J = 0;
         int K = 0;
 
-        // System.out.println(this.getCubes().get(0).getPosX());
-
         for(Cube cube : this.getCubes()){
             System.out.println("The cube with ID: " + cube.getID() + " is in X: " + cube.getPosX() + " Y: " + cube.getPosY());
         }
 
+        //TODO: Fix this
         // ArrayList<Cube> list = this.getCubes();
         // while(i < list.size()){
         //     if(list.get(i).getPosY() == 3){
-        //         System.out.print(list.get(i).getID() + " ");
+        //         System.out.print(list.get(i).getPosX() + " ");
         //         J++;
         //         if(J == 3){
         //             System.out.println();
         //         }
         //     }else if(list.get(i).getPosY() == 2){
-        //         System.out.print(list.get(i).getID() + " ");
+        //         System.out.print(list.get(i).getPosX() + " ");
         //         K++;
         //         if(K == 3){
         //             System.out.println();
         //         }
         //     }else{
-        //         System.out.print(list.get(i).getID() + " ");
+        //         System.out.print(list.get(i).getPosX() + " ");
         //     }
         //     i++;
         // }
