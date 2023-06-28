@@ -36,6 +36,7 @@ public class Table {
         return null;
     }
 
+    // TODO: remove the first state each time you find it
     public ArrayList<Table> generateMoves(){
         ArrayList<Cube> currentTable = this.getCubes();
 
