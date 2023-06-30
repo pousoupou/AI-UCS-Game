@@ -35,12 +35,11 @@ public class Table {
         }
         return null;
     }
-    
+
     public ArrayList<Table> generateMoves(){
         ArrayList<Cube> currentTable = this.getCubes();
         ArrayList<Cube> startingState = createCopyOfTable(currentTable);
 
-        
         int X = 1;
         int Y = 1;
         int K = this.getK();
@@ -58,7 +57,7 @@ public class Table {
                     
                     if(cube.isValid(copyOfTable) && cube.isFree(copyOfTable)){                        
                         if(isSame(copyOfTable, startingState)){
-                            System.out.println("found same table, skipping...\n\n");
+                            System.out.println("found same table, skipping...\n");
                             continue;
                         }
                         Table table = new Table(K);
@@ -98,7 +97,6 @@ public class Table {
             Cube cube1 = state1.get(i);
             Cube cube2 = state2.get(i);
 
-            // System.out.println("1: " + cube1.getID() + ", " + cube1.getPosX() + ", " + cube1.getPosY() + "\t2: " + cube2.getID() + ", " + cube2.getPosX() + ", " + cube2.getPosY());
             if(!(cube1.getID() == cube2.getID() && cube1.getPosX() == cube2.getPosX() && cube1.getPosY() == cube2.getPosY())){
                 isSame = false;
             }
@@ -118,15 +116,15 @@ public class Table {
     }
 
     public void printTable(){
-        int i = 0;
-        int J = 0;
-        int K = 0;
-
         for(Cube cube : this.getCubes()){
-            System.out.println("The cube with ID: " + cube.getID() + " is in X: " + cube.getPosX() + " Y: " + cube.getPosY());
+            System.out.println("The cube with ID: " + cube.getID() + " is in\tX: " + cube.getPosX() + " Y: " + cube.getPosY());
         }
+        
+        //TODO: Make the printTable() more beautiful
+        // int i = 0;
+        // int J = 0;
+        // int K = 0;
 
-        //TODO: Fix this
         // ArrayList<Cube> list = this.getCubes();
         // while(i < list.size()){
         //     if(list.get(i).getPosY() == 3){

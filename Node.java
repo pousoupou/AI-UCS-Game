@@ -13,5 +13,8 @@ public class Node {
 
     //TODO: getters/setters
 
+    //TODO: gerateChildren()
+
     //TODO: calculateCost()
+
 }
