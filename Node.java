@@ -4,11 +4,13 @@ public class Node {
     private Table state;
     private Double pathCost;
     private Node parent;
+    private ArrayList<Node> children;
 
     public Node(Table state, Double pathCost, Node parent){
         this.state = state;
         this.pathCost = pathCost;
         this.parent = parent;
+        this.children = new ArrayList<Node>();
     }
 
     public Table getState(){
@@ -23,6 +25,10 @@ public class Node {
         return this.parent;
     }
 
+    public ArrayList<Node> getChildren(){
+        return this.children;
+    }
+
     public void setState(Table state){
         this.state = state;
     }
@@ -35,9 +41,19 @@ public class Node {
         this.parent = parent;
     }
 
-    //TODO: gerateChildren()
-    
-
     //TODO: calculateCost()
+    public Double calculateCost(){
+        Double cost = null;
 
+        return cost;
+    }
+
+    //TODO: gerateChildren()
+    public void generateChildren(){
+        ArrayList<Table> allMoves = state.generateMoves();
+
+        for(Table state : allMoves){
+            Node child = new Node(state, , this)
+        }
+    } 
 }
