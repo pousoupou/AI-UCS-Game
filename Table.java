@@ -35,26 +35,32 @@ public class Table {
         }
         return null;
     }
-
-    // TODO: remove the first state each time you find it
+    
     public ArrayList<Table> generateMoves(){
         ArrayList<Cube> currentTable = this.getCubes();
+        ArrayList<Cube> startingState = createCopyOfTable(currentTable);
 
+        
         int X = 1;
         int Y = 1;
         int K = this.getK();
-
+        
         for(Cube cube : currentTable){
             int backupX = cube.getPosX();
             int backupY = cube.getPosY();
-
+            
             for(Y = 1; Y <= 3; Y++){
                 for(X = 1; X <= 4*K; X++){
                     cube.setPosX(X);
                     cube.setPosY(Y);
-
+                    
                     ArrayList<Cube> copyOfTable = createCopyOfTable(currentTable);
-                    if(cube.isValid(copyOfTable) && cube.isFree(copyOfTable)){
+                    
+                    if(cube.isValid(copyOfTable) && cube.isFree(copyOfTable)){                        
+                        if(isSame(copyOfTable, startingState)){
+                            System.out.println("found same table, skipping...\n\n");
+                            continue;
+                        }
                         Table table = new Table(K);
                         table.setCubes(copyOfTable);
                         
@@ -84,6 +90,20 @@ public class Table {
             }
         }
         return false;
+    }
+
+    private static Boolean isSame(ArrayList<Cube> state1, ArrayList<Cube> state2){
+        Boolean isSame = true;
+        for(int i = 0; i < state1.size(); i++){
+            Cube cube1 = state1.get(i);
+            Cube cube2 = state2.get(i);
+
+            // System.out.println("1: " + cube1.getID() + ", " + cube1.getPosX() + ", " + cube1.getPosY() + "\t2: " + cube2.getID() + ", " + cube2.getPosX() + ", " + cube2.getPosY());
+            if(!(cube1.getID() == cube2.getID() && cube1.getPosX() == cube2.getPosX() && cube1.getPosY() == cube2.getPosY())){
+                isSame = false;
+            }
+        }
+        return isSame;
     }
 
     private ArrayList<Cube> createCopyOfTable(ArrayList<Cube> toCopy){
