@@ -42,8 +42,14 @@ public class Node {
     }
 
     //TODO: calculateCost()
-    public Double calculateCost(){
+    private static Double calculateCost(Node starting, Node next){
+        // up: cost = y' - y
+        // down: cost = 0.5(y - y')
+        // same: cost = 0.75
+
         Double cost = null;
+
+        
 
         return cost;
     }
