@@ -6,9 +6,8 @@ public class Node {
     private Node parent;
     private ArrayList<Node> children;
 
-    public Node(Table state, Double pathCost, Node parent){
+    public Node(Table state, Node parent){
         this.state = state;
-        this.pathCost = pathCost;
         this.parent = parent;
         this.children = new ArrayList<Node>();
     }
@@ -41,25 +40,46 @@ public class Node {
         this.parent = parent;
     }
 
-    //TODO: calculateCost()
     private static Double calculateCost(Node starting, Node next){
         // up: cost = y' - y
         // down: cost = 0.5(y - y')
         // same: cost = 0.75
 
-        Double cost = null;
-
+        ArrayList<Cube> startingState = new ArrayList<Cube>();
+        ArrayList<Cube> nextState = new ArrayList<Cube>();
         
+        double cost = 0;
+        int xDifference = 0;
+        int yDifference = 0;
 
+        startingState = starting.getState().getCubes();
+        nextState = next.getState().getCubes();
+
+        for(int i = 0; i < nextState.size(); i++){
+            xDifference = Math.abs(nextState.get(i).getPosX() - startingState.get(i).getPosX());
+            yDifference = Math.abs(nextState.get(i).getPosY() - startingState.get(i).getPosY());
+        }
+
+        if(xDifference != 0){
+            cost = 0.75;
+        }else if(yDifference > 0){
+            cost = (double)yDifference;
+        }else if(yDifference < 0){
+            cost = 0.5 * yDifference;
+        }else {
+            cost = -1;
+        }
         return cost;
     }
 
-    //TODO: gerateChildren()
     public void generateChildren(){
-        ArrayList<Table> allMoves = state.generateMoves();
+        ArrayList<Table> allStates = this.state.generateMoves();
 
-        for(Table state : allMoves){
-            Node child = new Node(state, , this)
+        for(Table state : allStates){
+            Node child = new Node(state, this);
+            this.setCost(calculateCost(this, child));
+
+            children.add(child);
         }
     } 
 }
