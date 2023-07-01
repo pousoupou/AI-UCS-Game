@@ -121,6 +121,8 @@ public class Table {
         }
         
         //TODO: Make the printTable() more beautiful
+        // Maybe the fact that IDs are in the same position will help
+
         // int i = 0;
         // int J = 0;
         // int K = 0;
