@@ -3,20 +3,23 @@ import java.util.*;
 public class Node {
     private Table state;
     private Double pathCost;
+    private double cost;
     private Node parent;
     private ArrayList<Node> children;
 
+    //TODO: check line 15
     public Node(Table state, Node parent){
         this.state = state;
         this.parent = parent;
         this.children = new ArrayList<Node>();
+        this.cost = calculateCost(parent, this);
     }
 
     public Table getState(){
         return this.state;
     }
 
-    public Double getCost(){
+    public Double getPathCost(){
         return this.pathCost;
     }
 
@@ -32,7 +35,7 @@ public class Node {
         this.state = state;
     }
 
-    public void setCost(Double pathCost){
+    public void setPathCost(Double pathCost){
         this.pathCost = pathCost;
     }
 
@@ -40,6 +43,7 @@ public class Node {
         this.parent = parent;
     }
 
+    //TODO: handle null nodes
     private static Double calculateCost(Node starting, Node next){
         // up: cost = y' - y
         // down: cost = 0.5(y - y')
