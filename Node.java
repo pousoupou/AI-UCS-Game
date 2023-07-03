@@ -81,7 +81,7 @@ public class Node {
 
         for(Table state : allStates){
             Node child = new Node(state, this);
-            this.setCost(calculateCost(this, child));
+            this.setPathCost(calculateCost(this, child));
 
             children.add(child);
         }
